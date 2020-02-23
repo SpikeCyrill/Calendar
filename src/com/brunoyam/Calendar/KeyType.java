@@ -6,10 +6,10 @@ public enum KeyType {
     DAY("-d", 1, 365);
 
     private String key;
-    private int minValue;
-    private int maxValue;
+    private Integer minValue;
+    private Integer maxValue;
 
-    KeyType(String key, int minValue, int maxValue) {
+    KeyType(String key, Integer minValue, Integer maxValue) {
         this.key = key;
         this.minValue = minValue;
         this.maxValue = maxValue;
@@ -23,7 +23,7 @@ public enum KeyType {
 
         KeyType currentKey = null;
 
-        for(int i = 0; i < values().length; i++) {
+        for(Integer i = 0; i < values().length; i++) {
             if(keyString.equals(values()[i].getKey())) {
                 currentKey = values()[i];
             }

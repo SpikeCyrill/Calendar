@@ -2,13 +2,15 @@ package com.brunoyam.Calendar;
 
 public class Calendar {
 
+    private static final String GET_BY_MONTH_RESULT = "месяц номер %d называется %s, время года - %s";
+
     private final KeyType currentKey;
 
     public Calendar(KeyType currentKey) {
         this.currentKey = currentKey;
     }
 
-    public void start(int number) {
+    public void start(Integer number) {
 
 
         switch (currentKey) {
@@ -29,12 +31,29 @@ public class Calendar {
 
     }
 
-    private String getMonthAndTime(int month) {
-        return "";
+    private String getMonthAndTime(Integer monthNumber) {
+
+        Month month = Month.getByPosition(monthNumber);
+        String monthName = month.getName();
+
+        Season season = month.getSeason();
+        String seasonName = season.getName();
+
+        return String.format(GET_BY_MONTH_RESULT, monthNumber, monthName, seasonName);
     }
 
-    private String getWeekAndMonthAndTime(int day) {
-        return "";
+    private String getWeekAndMonthAndTime(Integer day) {
+        Month month = Month.getByDay(day);
+        String monthName = month.getName();
+
+        Season season = month.getSeason();
+        String seasonName = season.getName();
+
+        Integer weekNumber = day / 7 + 1;
+
+        return "неделя номер " + weekNumber
+                + " месяц называется \"" + monthName
+                + "\", время года - " + seasonName;
     }
 
 
@@ -52,7 +71,7 @@ public class Calendar {
         }
 
         Calendar calendar = new Calendar(currentKey);
-        calendar.start(11);
+        calendar.start(Integer.valueOf(args[1]));
 
     }
 
